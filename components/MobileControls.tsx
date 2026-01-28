@@ -12,7 +12,7 @@ export const MobileControls: React.FC<ControlsProps> = ({ onMove, onLook }) => {
 
   // --- JOYSTICK LOGIC (Left Screen) ---
   const handleTouchStart = (e: React.TouchEvent) => {
-    Array.from(e.changedTouches).forEach(touch => {
+    Array.from(e.changedTouches).forEach((touch: any) => {
       const halfWidth = window.innerWidth / 2;
       
       // Left side: Movement Joystick
@@ -25,7 +25,7 @@ export const MobileControls: React.FC<ControlsProps> = ({ onMove, onLook }) => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    Array.from(e.changedTouches).forEach(touch => {
+    Array.from(e.changedTouches).forEach((touch: any) => {
       // Handle Joystick Move
       if (touch.identifier === currentTouchId && joystickOrigin.current) {
         const dx = touch.clientX - joystickOrigin.current.x;
@@ -63,7 +63,7 @@ export const MobileControls: React.FC<ControlsProps> = ({ onMove, onLook }) => {
   const prevLook = useRef<{ [key: number]: {x: number, y: number} }>({});
 
   const handleGlobalTouchMove = (e: TouchEvent) => {
-    Array.from(e.changedTouches).forEach(touch => {
+    Array.from(e.changedTouches).forEach((touch: any) => {
         if (touch.clientX > window.innerWidth / 2) {
             const prev = prevLook.current[touch.identifier];
             if (prev) {
@@ -77,13 +77,13 @@ export const MobileControls: React.FC<ControlsProps> = ({ onMove, onLook }) => {
   }
 
   const handleGlobalTouchEnd = (e: TouchEvent) => {
-      Array.from(e.changedTouches).forEach(touch => {
+      Array.from(e.changedTouches).forEach((touch: any) => {
           delete prevLook.current[touch.identifier];
       });
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    Array.from(e.changedTouches).forEach(touch => {
+    Array.from(e.changedTouches).forEach((touch: any) => {
       if (touch.identifier === currentTouchId) {
         setJoystickPos(null);
         joystickOrigin.current = null;
