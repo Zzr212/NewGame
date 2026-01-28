@@ -64,6 +64,10 @@ io.on('connection', (socket) => {
 
     lobbies.set(code, newLobby);
     socket.join(code);
+    
+    // CRITICAL FIX: Emit update immediately so the creator gets the lobby state
+    io.to(code).emit('lobby:update', newLobby);
+    
     callback({ success: true, code, state: newLobby });
   });
 
